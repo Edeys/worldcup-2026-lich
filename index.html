@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lịch World Cup 2026 - Toàn bộ vòng bảng</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>⚽ FIFA World Cup 2026</h1>
+    <p class="subtitle">Lịch thi đấu vòng bảng - Giờ Việt Nam (UTC+7)</p>
+    <div class="actions">
+      <button class="btn btn-primary" onclick="downloadICS()">
+        📥 Tải file .ics (Calendar)
+      </button>
+      <button class="btn btn-secondary" onclick="copyShareLink()">
+        🔗 Sao chép link chia sẻ
+      </button>
+    </div>
+    <div id="toast" class="toast"></div>
+  </header>
+
+  <div class="filters">
+    <select id="groupFilter" onchange="renderTable()">
+      <option value="all">Tất cả bảng</option>
+      <option value="A">Bảng A</option>
+      <option value="B">Bảng B</option>
+      <option value="C">Bảng C</option>
+      <option value="D">Bảng D</option>
+      <option value="E">Bảng E</option>
+      <option value="F">Bảng F</option>
+      <option value="G">Bảng G</option>
+      <option value="H">Bảng H</option>
+      <option value="I">Bảng I</option>
+      <option value="J">Bảng J</option>
+      <option value="K">Bảng K</option>
+      <option value="L">Bảng L</option>
+    </select>
+    <div class="match-count" id="matchCount"></div>
+  </div>
+
+  <div class="table-wrap">
+    <table id="scheduleTable">
+      <thead>
+        <tr>
+          <th>STT</th>
+          <th>Bảng</th>
+          <th>Đội 1</th>
+          <th></th>
+          <th>Đội 2</th>
+          <th>Ngày (VN)</th>
+          <th>Giờ (VN)</th>
+          <th>Khung</th>
+          <th>Sân</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </div>
+
+  <div class="legend">
+    <span class="badge badge-morning">🟡 Sáng (00:00–11:59)</span>
+    <span class="badge badge-afternoon">🟢 Chiều (12:00–17:59)</span>
+    <span class="badge badge-evening">🔴 Tối (18:00–23:59)</span>
+  </div>
+
+  <footer>
+    <p>Dữ liệu từ FIFA World Cup 2026™ • Tự động cập nhật • <a href="https://github.com/Edeys/worldcup-2026-lich" target="_blank">GitHub</a></p>
+  </footer>
+</div>
+
+<script src="schedule-data.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
