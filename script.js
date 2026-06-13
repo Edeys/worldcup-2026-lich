@@ -128,24 +128,8 @@ function downloadICS() {
 }
 
 function syncGoogleCalendar(e) {
-  const url = ICS_URL;
-  if (navigator.clipboard) {
-    navigator.clipboard.writeText(url).catch(() => copyICSFallback(url));
-  } else {
-    copyICSFallback(url);
-  }
-  showToast("✅ Đã copy! Vào Google Calendar → + (Other calendars) → From URL → Ctrl+V → Add");
-}
-
-function copyICSFallback(text) {
-  const ta = document.createElement("textarea");
-  ta.value = text;
-  ta.style.position = "fixed";
-  ta.style.opacity = "0";
-  document.body.appendChild(ta);
-  ta.select();
-  try { document.execCommand("copy"); } catch {}
-  document.body.removeChild(ta);
+  downloadICS();
+  showToast("📥 Đã tải file .ics! Vào Google Calendar → ⚙️ Settings → Import & Export → Import → chọn file vừa tải");
 }
 
 function copyShareLink() {
