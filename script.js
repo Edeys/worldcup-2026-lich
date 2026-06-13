@@ -4,9 +4,17 @@ const WEBCAL_URL = "webcal://" + ICS_URL.replace(/^https?:\/\//, "");
 function isMobile() {
   return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 }
+function isIOS() {
+  return /iPhone|iPad|iPod/i.test(navigator.userAgent);
+}
+function isAndroid() {
+  return /Android/i.test(navigator.userAgent);
+}
 
 const btnGcal = document.getElementById("btnGcal");
-if (isMobile()) {
+if (isIOS()) {
+  btnGcal.href = WEBCAL_URL;
+} else if (isAndroid()) {
   btnGcal.addEventListener("click", function(e) {
     e.preventDefault();
     downloadICS();
