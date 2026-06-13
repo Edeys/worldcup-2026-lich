@@ -1,7 +1,13 @@
 const ICS_URL = location.href.replace(/\/?$/, "/") + "worldcup-2026-lich.ics";
 const WEBCAL_URL = "webcal://" + ICS_URL.replace(/^https?:\/\//, "");
 
-document.getElementById("btnGcal").href = "https://calendar.google.com/calendar/r?cid=" + WEBCAL_URL;
+function isMobile() {
+  return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+}
+
+document.getElementById("btnGcal").href = isMobile()
+  ? WEBCAL_URL
+  : "https://calendar.google.com/calendar/r?cid=" + WEBCAL_URL;
 document.getElementById("btnApple").href = WEBCAL_URL;
 
 function toVnTime(utcStr) {
