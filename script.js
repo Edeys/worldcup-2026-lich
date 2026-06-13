@@ -127,11 +127,25 @@ function downloadICS() {
   showToast("✅ Đã tải file .ics!");
 }
 
-function syncGoogleCalendar() {
-  const gcalSettings = "https://calendar.google.com/calendar/u/0/r/settings";
-  fallbackCopy(ICS_URL);
-  window.open(gcalSettings, "_blank");
-  showToast("✅ Đã copy URL lịch! Vào Google Calendar → + (bên cạnh Other calendars) → From URL → paste (Ctrl+V) → Add");
+function syncGoogleCalendar(e) {
+  const url = ICS_URL;
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(url).catch(() => copyICSFallback(url));
+  } else {
+    copyICSFallback(url);
+  }
+  showToast("✅ Đã copy! Vào Google Calendar → + (Other calendars) → From URL → Ctrl+V → Add");
+}
+
+function copyICSFallback(text) {
+  const ta = document.createElement("textarea");
+  ta.value = text;
+  ta.style.position = "fixed";
+  ta.style.opacity = "0";
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand("copy"); } catch {}
+  document.body.removeChild(ta);
 }
 
 function copyShareLink() {
