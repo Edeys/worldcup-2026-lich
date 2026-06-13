@@ -43,6 +43,9 @@ td:first-child, th:first-child { padding-left: 16px; }
 
 footer { text-align: center; padding: 24px 0 12px; color: #475569; font-size: 0.82em; }
 footer a { color: #64748b; }
+.credit { margin-top: 6px; font-size: 0.85em; opacity: 0.7; }
+.credit a { color: #94a3b8; text-decoration: none; font-weight: 500; }
+.credit a:hover { color: #f59e0b; text-decoration: underline; }
 
 .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(80px); background: #22c55e; color: #052e16; padding: 12px 24px; border-radius: 8px; font-weight: 600; opacity: 0; transition: all 0.3s; pointer-events: none; z-index: 999; }
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }

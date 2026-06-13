@@ -1,8 +1,6 @@
 const ICS_URL = location.href.replace(/\/?$/, "/") + "worldcup-2026-lich.ics";
-const GCAL_URL = "https://calendar.google.com/calendar/render?cid=" + encodeURIComponent(ICS_URL);
 const WEBCAL_URL = "webcal://" + ICS_URL.replace(/^https?:\/\//, "");
 
-document.getElementById("btnGcal").href = GCAL_URL;
 document.getElementById("btnApple").href = WEBCAL_URL;
 
 function toVnTime(utcStr) {
@@ -127,6 +125,13 @@ function downloadICS() {
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
   showToast("✅ Đã tải file .ics!");
+}
+
+function syncGoogleCalendar() {
+  const gcalSettings = "https://calendar.google.com/calendar/u/0/r/settings";
+  fallbackCopy(ICS_URL);
+  window.open(gcalSettings, "_blank");
+  showToast("✅ Đã copy URL lịch! Vào Google Calendar → + (bên cạnh Other calendars) → From URL → paste (Ctrl+V) → Add");
 }
 
 function copyShareLink() {
