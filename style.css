@@ -43,6 +43,8 @@ td:first-child, th:first-child { padding-left: 16px; }
 
 footer { text-align: center; padding: 24px 0 12px; color: #475569; font-size: 0.82em; }
 footer a { color: #64748b; }
+.counter { font-size: 0.9em; color: #64748b; margin-bottom: 8px; }
+.counter span { color: #f59e0b; font-weight: 700; }
 .credit { margin-top: 6px; font-size: 0.85em; opacity: 0.7; }
 .credit a { color: #94a3b8; text-decoration: none; font-weight: 500; }
 .credit a:hover { color: #f59e0b; text-decoration: underline; }

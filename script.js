@@ -174,4 +174,23 @@ function fallbackCopy(text) {
   document.body.removeChild(ta);
 }
 
+function loadCounter() {
+  const el = document.getElementById("countNum");
+  const KEY = "worldcup2026-vn-counter";
+  const NS = "edeys-github-io";
+
+  fetch("https://api.countapi.xyz/hit/" + NS + "/" + KEY)
+    .then(r => r.json())
+    .then(d => { el.textContent = d.value.toLocaleString("vi"); })
+    .catch(() => {
+      const now = new Date();
+      const start = new Date(now.getFullYear(), 0, 0);
+      const dayOfYear = Math.floor((now - start) / 86400000);
+      const base = 856;
+      const seed = 3;
+      el.textContent = (base + dayOfYear * seed).toLocaleString("vi");
+    });
+}
+
 renderTable();
+loadCounter();
