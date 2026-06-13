@@ -12,6 +12,10 @@ header h1 { font-size: 1.8em; background: linear-gradient(135deg, #f59e0b, #ef44
 .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(37,99,235,0.4); }
 .btn-secondary { background: #1e293b; color: #e2e8f0; border: 1px solid #334155; }
 .btn-secondary:hover { background: #334155; }
+.btn-apple { background: linear-gradient(135deg, #6366f1, #8b5cf6); color: #fff; }
+.btn-apple:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(99,102,241,0.4); }
+.btn-ghost { background: transparent; color: #94a3b8; border: 1px solid #334155; }
+.btn-ghost:hover { background: #1e293b; color: #e2e8f0; }
 
 .filters { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; flex-wrap: wrap; }
 .filters select { padding: 8px 16px; border-radius: 6px; border: 1px solid #334155; background: #1e293b; color: #e2e8f0; font-size: 0.9em; cursor: pointer; }

@@ -12,11 +12,17 @@
     <h1>⚽ FIFA World Cup 2026</h1>
     <p class="subtitle">Lịch thi đấu vòng bảng - Giờ Việt Nam (UTC+7)</p>
     <div class="actions">
-      <button class="btn btn-primary" onclick="downloadICS()">
-        📥 Tải file .ics (Calendar)
+      <a class="btn btn-primary" id="btnGcal" href="#" target="_blank">
+        📅 Đồng bộ Google Calendar
+      </a>
+      <a class="btn btn-apple" id="btnApple" href="#">
+        📅 Đồng bộ Apple/Outlook
+      </a>
+      <button class="btn btn-secondary" onclick="downloadICS()">
+        📥 Tải file .ics
       </button>
-      <button class="btn btn-secondary" onclick="copyShareLink()">
-        🔗 Sao chép link chia sẻ
+      <button class="btn btn-ghost" onclick="copyShareLink()">
+        🔗 Sao chép link
       </button>
     </div>
     <div id="toast" class="toast"></div>

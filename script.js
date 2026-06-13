@@ -1,3 +1,10 @@
+const ICS_URL = location.href.replace(/\/?$/, "/") + "worldcup-2026-lich.ics";
+const GCAL_URL = "https://calendar.google.com/calendar/render?cid=" + encodeURIComponent(ICS_URL);
+const WEBCAL_URL = "webcal://" + ICS_URL.replace(/^https?:\/\//, "");
+
+document.getElementById("btnGcal").href = GCAL_URL;
+document.getElementById("btnApple").href = WEBCAL_URL;
+
 function toVnTime(utcStr) {
   const d = new Date(utcStr + "Z");
   const vn = new Date(d.getTime() + 7 * 3600000);
@@ -72,7 +79,7 @@ function showToast(msg, isError = false) {
 }
 
 function toICSDate(utcStr) {
-  const d = new Date(utcStr + "Z");
+  const d = utcStr.endsWith("Z") ? new Date(utcStr) : new Date(utcStr + "Z");
   return d.toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
 }
 
@@ -91,10 +98,8 @@ function downloadICS() {
 
   for (const m of sorted) {
     const dtStart = toICSDate(m.utc);
-    // 2h15min for match duration
     const endDate = new Date(new Date(m.utc + "Z").getTime() + 135 * 60000);
     const dtEnd = endDate.toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
-
     const summary = `[WC26] ${m.team1} vs ${m.team2} (Bảng ${m.group})`;
     const desc = `World Cup 2026 - Vòng bảng\nBảng ${m.group}: ${m.team1} vs ${m.team2}\nSân: ${m.stadium}, ${m.city}`;
     const location = `${m.stadium}, ${m.city}`;
@@ -121,7 +126,7 @@ function downloadICS() {
   a.click();
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
-  showToast("✅ Đã tải file .ics! Mở vào Calendar của bạn.");
+  showToast("✅ Đã tải file .ics!");
 }
 
 function copyShareLink() {
