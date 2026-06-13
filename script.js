@@ -1,8 +1,20 @@
 const ICS_URL = location.href.replace(/\/?$/, "/") + "worldcup-2026-lich.ics";
 const WEBCAL_URL = "webcal://" + ICS_URL.replace(/^https?:\/\//, "");
 
-document.getElementById("btnGcal").href = WEBCAL_URL;
 document.getElementById("btnApple").href = WEBCAL_URL;
+
+document.getElementById("btnGcal").addEventListener("click", function(e) {
+  e.preventDefault();
+  const gcalUrl = "https://calendar.google.com/calendar/u/0/r/settings/addbyurl";
+  window.open(gcalUrl, "_blank");
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(ICS_URL).then(() => {
+      showToast("Đã copy URL .ics! Dán vào ô \"Add by URL\" trong Google Calendar");
+    });
+  } else {
+    showToast("Dán URL này vào ô Add by URL: " + ICS_URL);
+  }
+});
 
 function toVnTime(utcStr) {
   const d = new Date(utcStr + "Z");
