@@ -6,26 +6,28 @@ document.getElementById("btnApple").href = WEBCAL_URL;
 
 function toVnTime(utcStr) {
   const d = new Date(utcStr + "Z");
-  const vn = new Date(d.getTime() + 7 * 3600000);
-  return vn;
+  return new Date(Date.UTC(
+    d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate(),
+    d.getUTCHours() + 7, d.getUTCMinutes()
+  ));
 }
 
 function formatDateVN(date) {
   const days = ["CN", "T2", "T3", "T4", "T5", "T6", "T7"];
-  const d = days[date.getDay()];
-  const dd = String(date.getDate()).padStart(2, "0");
-  const mm = String(date.getMonth() + 1).padStart(2, "0");
+  const d = days[date.getUTCDay()];
+  const dd = String(date.getUTCDate()).padStart(2, "0");
+  const mm = String(date.getUTCMonth() + 1).padStart(2, "0");
   return `${d}, ${dd}/${mm}`;
 }
 
 function formatTimeVN(date) {
-  const h = date.getHours();
-  const m = date.getMinutes();
+  const h = date.getUTCHours();
+  const m = date.getUTCMinutes();
   return `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`;
 }
 
 function getKhungGio(date) {
-  const h = date.getHours();
+  const h = date.getUTCHours();
   if (h < 12) return { label: "Sáng", cls: "badge-morning" };
   if (h < 18) return { label: "Chiều", cls: "badge-afternoon" };
   return { label: "Tối", cls: "badge-evening" };
