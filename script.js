@@ -5,9 +5,16 @@ function isMobile() {
   return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 }
 
-document.getElementById("btnGcal").href = isMobile()
-  ? WEBCAL_URL
-  : "https://calendar.google.com/calendar/r?cid=" + WEBCAL_URL;
+const btnGcal = document.getElementById("btnGcal");
+if (isMobile()) {
+  btnGcal.addEventListener("click", function(e) {
+    e.preventDefault();
+    downloadICS();
+    showToast("Mở file .ics vừa tải → chọn Google Calendar → Import");
+  });
+} else {
+  btnGcal.href = "https://calendar.google.com/calendar/r?cid=" + WEBCAL_URL;
+}
 document.getElementById("btnApple").href = WEBCAL_URL;
 
 function toVnTime(utcStr) {
